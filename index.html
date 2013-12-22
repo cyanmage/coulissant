@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prototype  de fenêtres coulissants</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<!--<script type="text/javascript" src="js/interactivite.js"></script>-->
+<script type="text/javascript" src="js/interactivite_avec_angular.js"></script>
+
+<script type="text/javascript">
+
+
+</script>
+
+</head>
+
+
+<body ng-app="mon_appli" ng-controller="controleur" style="overflow: hidden">
+
+	<div class= "header" >
+		Test de d&eacute;filement suite &agrave; l'appui sur des boutons "gauche" et "droite"
+		<BR />
+		Semaine du {*dates_a_afficher[0][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[0][1] | date:"dd/MM/yyyy"*}
+		<BR />
+		<u><b>	Semaine du 	{*dates_a_afficher[1][0]  | date:"dd/MM/yyyy"*}au {* dates_a_afficher[1][1] | date:"dd/MM/yyyy"*}</b></u>
+		<BR />
+			Semaine du 	{*dates_a_afficher[2][0]  | date:"dd/MM/yyyy"*}au {* dates_a_afficher[2][1] | date:"dd/MM/yyyy"*}
+	</div>
+
+	<div defileur>	
+
+
+		<div class = "leftPanel panneau" id="panel0">
+			Panneau gauche 	
+			<div class="spacer"></div>
+			<div class="champDate" id="date0"> : {*dates_a_afficher[gestionDesPanneaux.champ_gauche][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_gauche][1] | date:"dd/MM/yyyy"    *}</div>
+		</div>
+
+	
+		<div class = "centerPanel panneau" id="panel1">
+			Panneau centr&eacute;
+			<div class="spacer"></div>
+			<div class="champDate" id="date1"> :{*dates_a_afficher[gestionDesPanneaux.champ_centre][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_centre][1] | date:"dd/MM/yyyy"    *}</div>
+		</div>
+	
+
+		<div class = "rightPanel panneau" id = "panel2">
+			Panneau droit 
+			<div class="spacer"></div>
+			<div class="champDate" id="date2">:{*dates_a_afficher[gestionDesPanneaux.champ_droite][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_droite][1] | date:"dd/MM/yyyy"    *} </div>		
+		</div>
+		<img src="images/left_arrow.jpg" class="leftArrow" id="leftArrow" direction-gauche>		
+		<img src="images/right_arrow.jpg" class="rightArrow" id="rightArrow" direction-droite>
+
+	<!--	-->
+	</div>
+</body>
+
+
+<!---->
+</html>
