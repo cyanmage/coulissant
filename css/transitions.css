@@ -1,0 +1,93 @@
+	/*#element-a-animer {
+
+	width : 500px;
+	height : 300px;
+	background-color: #E994B8;
+	border-color: #272822;
+	border-radius: 5px;
+	border-style: dashed;
+	position: relative;
+	top: 200px;
+	left: 300px;
+	margin-left: 0px;
+
+	/*transition-property  : margin-left, background-color;
+	transition-duration :  5s, 0.5s;
+	transition-delay : 0.5s, 0s;
+	transition-timing-function : ease-in-out, ease;*/
+
+	/*  -webkit-transform 	:  translate(-90px, 0);	
+	  -webkit-transition 	:  background-color 0.5s 	0s 		ease;  	
+	-webkit-transition	:  -webkit-transform 5.5s 	5s 	ease-in-out;
+}
+
+#element-a-animer:hover{
+margin-left: 100px;
+	background-color: #00FF80;
+	cursor: pointer;	
+	-webkit-transform : translate(50px, 0);  
+}*/
+
+[emplacement='gauche']{
+
+  /*-webkit-transform			:	translateX(-100%);
+     -moz-transform			:	translateX(-100%);
+      -ms-transform			:	translateX(-100%);
+       -o-transform			:	translateX(-100%);
+          transform 		:	translateX(-100%);*/
+	left : -100%;
+}
+
+[emplacement='centre'] {
+
+	/*-webkit-transform		:	translateX(0%   );
+	   -moz-transform		:	translateX(0%   );
+	    -ms-transform		:	translateX(0%   );
+	     -o-transform		:	translateX(0%   );
+	        transform 		:	translateX(0%   );*/
+	left: 0%;
+}
+
+[emplacement='droite']{
+
+	 /*-webkit-transform		:	translateX(100% );
+	  -moz-transform		:	translateX(100% );
+	    -ms-transform		:	translateX(100% );
+	     -o-transform		:	translateX(100% );
+	        transform 		:	translateX(100% );*/
+	left: 100%; /*Dépasse légèrement 100%, sinon une bande blanche apparaît*/
+}
+
+.transitionDefileur{	
+    transition 				: 	left 	0.5s 	ease-out;
+	/*-webkit-transition		:	-webkit-transform  		0.6s 		linear;
+	   -moz-transition		:	-moz-transform 			0.6s 		linear;
+	    -ms-transition		:	-ms-transform 			0.6s 		linear;
+	     -o-transition		:	-o-transform 			0.6s 		linear;
+	        transition 		:	transform 				0.6s 		linear;*/
+
+
+}
+
+.noTransition{
+	transition 		: 	none;
+}
+
+	/*transition-property  : margin-left, background-color;
+	transition-duration :  5s, 0.5s;
+	transition-delay : 0.5s, 0s;
+	transition-timing-function : ease-in-out, ease;*/
+
+	/*  -webkit-transform 	:  translate(-90px, 0);	
+	  -webkit-transition 	:  background-color 0.5s 	0s 		ease;  	
+	-webkit-transition	:  -webkit-transform 5.5s 	5s 	ease-in-out;
+}
+
+#element-a-animer:hover{
+margin-left: 100px;
+	background-color: #00FF80;
+	cursor: pointer;	
+	-webkit-transform : translate(50px, 0);  
+.noTransition{
+    transition 			: 	none;
+}
