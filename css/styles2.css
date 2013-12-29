@@ -9,25 +9,16 @@
 
 
 
-.defileur{
-	overflow: hidden;
-	border-style: dashed;
-	border-width: 1px;
-	border-radius: 5px;
-	font-style: italic;
- 	font-weight: bold;
- }
-
-.petitdefileur{
-	height : 100px;	
+[defileur]{
+	/*height : 300px;	
 	width  : 200px;
 	position : relative;
- 	/*overflow: hidden;*/
-	position			: absolute;	
-	margin-top: 150px;
+ 	overflow: hidden;*/
+
+	/*margin-top: 150px;
 	margin-left: 500px;
  	padding-left: 50px;
- 	padding-right: 15px;/**/
+ 	padding-right: 15px;*/
 
 	border-style: dashed;
 	border-width: 1px;
@@ -43,45 +34,43 @@
 .panneau{
 	width				: 100%;
 	height				: 100%;
-	position 			: absolute;
+	position			: absolute;	
 }
 
 .leftPanel{
 	background-color	: #DEDCFC;
-	/*left				: -100%;*/
+
+	left				: -100%;
 
 }
 
 .rightPanel{
-	background-color	: #DEDCFC;/*#FFE8DD;	*/
-	left 				: 100%;/**/
-	width 	 			: 100.5%;
-
+	background-color	: #FFE8DD;	
+	/*background-color	: #456*/;
+	left 				: 100%;
 }
 
 .centerPanel{
-	background-color	: #DEDCFC;/*#EFFCF4;*/
-	/*left				: 0%;*/
-
+	background-color	: #EFFCF4;
+	left				: 0%;
 }
 
-.arrow{	
+.leftArrow{
 	position 	: 	absolute;
+	left 		: 	2%;
+	top			:	85%;
 	z-index		: 	1000;
 	width		:	10%;
 	height		: 	10%;
 }
-
-.leftArrow{
-	left 		: 	2%;
-	top			:	85%;
-}
-
 .rightArrow{
+	position 	:	absolute;
 	left 		:	88%;
 	top			:	85%;
+	z-index		:	1000;
+	width		:	10%;
+	height		:	10%;
 }
-
 .rightArrow:hover, .leftArrow:hover{
 	cursor: pointer;
 }
@@ -89,4 +78,11 @@
 .spacer{
 	height : 8%;
 	background-color: #456;
+}
+
+.date{
+	margin-left: 	3%;
+	background-color: white;
+	width: 25%	;
+	height: 8%;
 }
