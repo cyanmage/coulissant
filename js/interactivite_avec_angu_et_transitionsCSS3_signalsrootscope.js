@@ -186,7 +186,7 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', 'servicesEve
 
 
 			scope.$onRootScope("fleche.signaleChangementDirection", function(event, data){
-				data == 'flecheDroite'  ? panneaux.permuteGauche(element) : panneaux.permuteDroite(element);
+				data == 'flecheGauche'  ? panneaux.permuteGauche(element) : panneaux.permuteDroite(element);
 			});
 
 		}

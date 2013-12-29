@@ -41,21 +41,21 @@
 
 
 .panneau{
-	width				: 100%;
+	width				: 100.5%;
 	height				: 100%;
 	position 			: absolute;
 }
 
 .leftPanel{
 	background-color	: #DEDCFC;
+	width				: 100.5%;
 	/*left				: -100%;*/
-
 }
 
 .rightPanel{
 	background-color	: #DEDCFC;/*#FFE8DD;	*/
 	left 				: 100%;/**/
-	width 	 			: 100.5%;
+	width 	 			: 101%;
 
 }
 

@@ -137,7 +137,7 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', 'servicesEve
 
 				if(newValue !== oldValue && newValue !== ""){
 					console.log("je commence à défiler ! nouvelle valeur : " + newValue + ", ancienne valeur : " + oldValue);					
-					servicesEvenements.mouvement == 'droite'  ? panneaux.permuteGauche(element) : panneaux.permuteDroite(element);	
+					servicesEvenements.mouvement == 'gauche'  ? panneaux.permuteGauche(element) : panneaux.permuteDroite(element);	
 				}
 			});	
 
