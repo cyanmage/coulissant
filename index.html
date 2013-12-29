@@ -3,11 +3,15 @@
 <head>
 	<title>Prototype  de fenêtres coulissants</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/transitions.css">	
 
 <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <!--<script type="text/javascript" src="js/interactivite.js"></script>-->
-<script type="text/javascript" src="js/interactivite_avec_angular.js"></script>
+<!--<script type="text/javascript" src="js/interactivite_avec_angular_et_transitionsCSS3_services.js"></script>-->
+<script type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_signalsrootscope.js"></script>
+<!--<script type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_directives.js"></script>-->
+
 
 <script type="text/javascript">
 
@@ -17,45 +21,59 @@
 </head>
 
 
-<body ng-app="mon_appli" ng-controller="controleur" style="overflow: hidden">
+<body ng-app="appli" style="overflow : hidden">
 
 	<div class= "header" >
-		Test de d&eacute;filement suite &agrave; l'appui sur des boutons "gauche" et "droite"
+		<u>Test de d&eacute;filement suite &agrave; l'appui sur des boutons "gauche" et "droite"</u>
 		<BR />
-		Semaine du {*dates_a_afficher[0][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[0][1] | date:"dd/MM/yyyy"*}
-		<BR />
-		<u><b>	Semaine du 	{*dates_a_afficher[1][0]  | date:"dd/MM/yyyy"*}au {* dates_a_afficher[1][1] | date:"dd/MM/yyyy"*}</b></u>
-		<BR />
-			Semaine du 	{*dates_a_afficher[2][0]  | date:"dd/MM/yyyy"*}au {* dates_a_afficher[2][1] | date:"dd/MM/yyyy"*}
+		Indication du mouvement : {{ direction }}!!! 
+						<div>M&eacute;thode utilis&eacute;e : {{methode}}</div>
 	</div>
 
-	<div defileur>	
 
 
-		<div class = "leftPanel panneau" id="panel0">
-			Panneau gauche 	
-			<div class="spacer"></div>
-			<div class="champDate" id="date0"> : {*dates_a_afficher[gestionDesPanneaux.champ_gauche][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_gauche][1] | date:"dd/MM/yyyy"    *}</div>
-		</div>
-
+	<defileur class = "defileur" methode="methode">	
+		<div  ng-controller="controleurDefileur">
 	
-		<div class = "centerPanel panneau" id="panel1">
-			Panneau centr&eacute;
-			<div class="spacer"></div>
-			<div class="champDate" id="date1"> :{*dates_a_afficher[gestionDesPanneaux.champ_centre][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_centre][1] | date:"dd/MM/yyyy"    *}</div>
-		</div>
-	
+			<panneau-defileur  emplacement = "gauche" class = "leftPanel panneau transitionDefileur" id = "panel0">
+				Panneau gauche
+				<div class="spacer"></div>			
+			</panneau-defileur/>
 
-		<div class = "rightPanel panneau" id = "panel2">
-			Panneau droit 
-			<div class="spacer"></div>
-			<div class="champDate" id="date2">:{*dates_a_afficher[gestionDesPanneaux.champ_droite][0]  | date:"dd/MM/yyyy"*} au {* dates_a_afficher[gestionDesPanneaux.champ_droite][1] | date:"dd/MM/yyyy"    *} </div>		
-		</div>
-		<img src="images/left_arrow.jpg" class="leftArrow" id="leftArrow" direction-gauche>		
-		<img src="images/right_arrow.jpg" class="rightArrow" id="rightArrow" direction-droite>
+			<panneau-defileur  emplacement = "centre" class = "centerPanel panneau transitionDefileur" id="panel1">
+				<div>Panneau centr&eacute;</div>
+				<!--<div>M&eacute;thode utilis&eacute;e : {{methode_utilisee}}</div>				-->
+				<div class="spacer"></div>
+			</panneau-defileur/>
 
-	<!--	-->
-	</div>
+			<panneau-defileur  emplacement = "droite" class = "rightPanel panneau transitionDefileur" id = "panel2" >
+				Panneau droit 
+				<div class="spacer"></div>
+			</panneau-defileur/>			
+
+			<img 	direction-gauche 	src="images/left_arrow.jpg" 	class="arrow leftArrow" 		id="leftArrow" 		></img>		
+			<img 	direction-droite 	src="images/right_arrow.jpg" 	class="arrow rightArrow"		id="rightArrow" 	></img>
+		<!---->
+		</div>
+	</defileur>
+
+	<!--
+	<defileur class='petitdefileur'>
+		<panneau-defileur   emplacement = "gauche" class='leftPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
+			<BR />Initialement à GAUCHE
+		</panneau-defileur>
+		<panneau-defileur   emplacement = "centre" class='centerPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
+			<BR />Initialement au CENTRE
+		</panneau-defileur>	
+		<panneau-defileur   emplacement = "droite" class='rightPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
+			<BR />Initialement à DROITE
+		</panneau-defileur>
+
+	</defileur>	-->
+
+
+	<!--<div id="element-a-animer"></div>-->
+
 </body>
 
 
