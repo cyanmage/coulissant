@@ -11,7 +11,9 @@
 <!--<script type="text/javascript" src="js/interactivite_avec_angular_et_transitionsCSS3_services.js"></script>-->
 <!--<script type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_signalsrootscope.js"></script>-->
 <!--<script type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_directives.js"></script>-->
-<script type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_ControleurEtdirectives.js"></script>
+<script 	type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_ControleurEtdirectives.js"></script>
+<!--<script 	type="text/javascript" src="js/interactivite_avec_angu_et_transitionsCSS3_ControleurRequire_Et_directives.js"></script>-->
+
 
 </head>
 
@@ -27,47 +29,60 @@
 	</div>
 
 
+	<div  ng-controller="controleurDefileur">
+		<defileur class = "defileur" methode="methode">	
 
-	<defileur class = "defileur" methode="methode">	
-		<div  ng-controller="controleurDefileur">
 	
-			<panneau-defileur  emplacement = "gauche" class = "leftPanel panneau transitionDefileur" id = "panel0">
+			<panneau-defileur  emplacement = "gauche" class = "panel_0 panneau transitionDefileur" id = "panel0">
 				Panneau gauche
 				<div class="spacer"></div>			
 			</panneau-defileur/>
 
-			<panneau-defileur  emplacement = "centre" class = "centerPanel panneau transitionDefileur" id="panel1">
+			<panneau-defileur  emplacement = "centre" class = "panel_1 panneau transitionDefileur" id="panel1">
 				<div>Panneau centr&eacute;</div>
-				<!--<div>M&eacute;thode utilis&eacute;e : {{methode_utilisee}}</div>				-->
+
 				<div class="spacer"></div>
 			</panneau-defileur/>
 
-			<panneau-defileur  emplacement = "droite" class = "rightPanel panneau transitionDefileur" id = "panel2" >
+			<panneau-defileur  emplacement = "droite" class = "panel_2 panneau transitionDefileur" id = "panel2" >
 				Panneau droit 
 				<div class="spacer"></div>
 			</panneau-defileur/>			
 
-			<img 	direction-gauche 	src="images/left_arrow.jpg" 	class="arrow leftArrow" 		id="leftArrow" 		></img>		
-			<img 	direction-droite 	src="images/right_arrow.jpg" 	class="arrow rightArrow"		id="rightArrow" 	></img>
-		<!---->
-		</div>
-	</defileur>
+		</defileur>
 
-	<!--
-	<defileur class='petitdefileur'>
-		<panneau-defileur   emplacement = "gauche" class='leftPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
-			<BR />Initialement à GAUCHE
-		</panneau-defileur>
-		<panneau-defileur   emplacement = "centre" class='centerPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
-			<BR />Initialement au CENTRE
-		</panneau-defileur>	
-		<panneau-defileur   emplacement = "droite" class='rightPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute;fileur
-			<BR />Initialement à DROITE
-		</panneau-defileur>
+		<img 	direction-gauche 	src="images/left_arrow.jpg" 	class="arrow leftArrow" 		id="leftArrow" 		></img>		
+		<img 	direction-droite 	src="images/right_arrow.jpg" 	class="arrow rightArrow"		id="rightArrow" 	></img>
 
-	</defileur>	-->
+	</div>	
+	
+
+		
+
+	<!--	
+		<defileur class='petitdefileur'>
+			
+				<panneau-defileur   emplacement = "gauche" class='leftPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute	;fileur
+					<BR />Initialement à GAUCHE, mode : {{mode}}
+					<BR /> {{ enCours }}
+				</panneau-defileur>
+
+			
+						
+				<panneau-defileur   emplacement = "centre" class='centerPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute	;fileur
+					<BR />Initialement au CENTRE, mode : {{mode}}
+					<BR />{{ enCours }}
+			</panneau-defileur>	
 
 
+					
+				<panneau-defileur   emplacement = "droite" class='rightPanel 	panneau 	transitionDefileur'>Test sur un petit d&eacute	;fileur
+					<BR />Initialement à DROITE, mode : {{mode}}
+					<BR />	{{ enCours }}			
+				</panneau-defileur>
+		</defileur>					
+	-->	
+	<!--<div  ng-controller="controleurPanneau">	</div>-->
 	<!--<div id="element-a-animer"></div>-->
 
 </body>

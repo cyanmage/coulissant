@@ -30,6 +30,11 @@ module_defileur.controller("controleurDefileur", ['$scope', '$q',
 		}
 	});
 
+
+	this.message = function(){
+		console.log("coucou !!! Je suis le contrôleur parent, tu ne t'y attendais pas, n'est-ce pas ?")
+	}
+
 }]);
 
 
@@ -56,10 +61,11 @@ module_defileur.directive('defileur', ['$q', function($q){
  	return {
  		restrict: 'AE',
  		link : function(scope, element, attributes){
- 		scope : {
 
- 			}		
- 		}
+ 		},
+ 		scope : {},
+ 		controller : "controleurDefileur", 
+ 		
 	}
 }]);
 
@@ -77,14 +83,16 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', '$timeout', 
 		/*scope : {
 			mode : " = "
 		},*/
-		controller : "controleurPanneau",
-		link : function(scope, element, attributes){
+		require : "^defileur",
+		//controller : "controleurPanneau",
+		link : function(scope, element, attributes, controleurDefileur){
 
 			element.on("transitionend", function(event, data){
 				if(element.attr("emplacement") == "centre"){
 					scope.$apply(scope.modeDefilement = "defilementTermine");
 				}
 				event.stopPropagation();
+				console.log("appel du controleur parent : " + controleurDefileur.message());
 			});
 
 			scope.$watch("modeDefilement", function(newValue, oldValue, scope){
@@ -92,23 +100,21 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', '$timeout', 
 				if (scope.modeDefilement == "gauche"){
 					panneaux.permuteDroite(element);
 					if (element.attr("emplacement") == "droite"){
-
-						/*scope.enCours = " je fais quelque chose :)"
+						//scope.$apply()
+						scope.enCours = " je fais quelque chose :)"
 						$timeout(function(){
 							scope.$apply(scope.enCours = "");
-							console.log("fini de charger !!");
-						}, 500);*/
+						}, 4000);/**/
 					}
 				}
 				else if (scope.modeDefilement == "droite"){
 					panneaux.permuteGauche(element);
 						if (element.attr("emplacement") == "gauche"){
-
-						/*scope.enCours = " je fais quelque chose :)";
+						//scope.$apply()
+						scope.enCours = " je fais quelque chose :)";
 						$timeout(function(){
 							scope.$apply(scope.enCours = "");
-							console.log("fini de charger !!");							
-						}, 500);*/
+						}, 4000);/**/
 					}
 				}
 			});
@@ -125,6 +131,7 @@ module_defileur.directive('directionDroite', function(){
 
 	return {
 		restrict : 'AE',
+		require : "^defileur",		
 		link : function(scope, element, attributes) {
 			element.on("click", function(event){
 				if (!scope.direction)
@@ -140,6 +147,7 @@ module_defileur.directive('directionGauche', function(){
 
 	return {
 		restrict : 'AE',
+		require : "^defileur",		
 		link : function(scope, element, attributes) {
 			element.on("click", function(event){
 				if (!scope.direction)
