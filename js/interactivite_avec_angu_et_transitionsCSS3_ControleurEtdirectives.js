@@ -1,17 +1,5 @@
-var appli = angular.module('appli', ['defileur', 'fonctionsCourantes']);
+var appli = angular.module('appli', ['defileur']);
 var module_defileur = angular.module('defileur', []);
-
-appli.config(['$interpolateProvider', function($interpolateProvider) {
-
-  	$interpolateProvider.startSymbol('{{');
-  	$interpolateProvider.endSymbol('}}');    
-       }
-]);
-
-
-
-
-
 
 /*/////////////////////////////////////////////////////////////////////////////////*/
 ///////////////////////////////////////////////////////////////////////////////////*/
@@ -24,15 +12,32 @@ appli.config(['$interpolateProvider', function($interpolateProvider) {
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-module_defileur.controller("controleurDefileur", ['$scope', '$q',	function($scope, $q){
+module_defileur.controller("controleurDefileur", ['$scope', '$q', 
+	function($scope, $q){
+		
+	$scope.modeDefilement = "";
+	$scope.direction = "" ;	
 
-		$scope.direction = "";
-		$scope.modele = "wazzz";
-		$scope.methode = "directives";
+	$scope.$watch("direction", function(newValue, oldValue, scope){
+		//console.log(scope.direction);
+			$scope.modeDefilement = $scope.direction;
+	});
+
+	$scope.$watch("modeDefilement", function(newValue, oldValue, scope){
+		if (newValue !== oldValue && newValue === "defilementTermine"){
+			//console.log($scope.modeDefilement);
+			$scope.direction = "";	
+		}
+	});
 
 }]);
 
 
+module_defileur.controller("controleurPanneau", ['scope', '$q', function($scope, $q){
+
+
+
+}]);
 
 /*#############################             ###############################          ################################*/
 /*#############################             ###############################          ################################*/
@@ -48,22 +53,16 @@ module_defileur.controller("controleurDefileur", ['$scope', '$q',	function($scop
 module_defileur.directive('defileur', ['$q', function($q){
  	return {
  		restrict: 'AE',
- 		scope : {
- 			methode : " = "
- 		},
- 		//transclude : true,
- 		//controller : "controleurDefileur",
  		link : function(scope, element, attributes){
- 			//console.log("scope id du defileur : " + scope.$id + ",   modele direction : " + scope.direction);
-			console.log("defileur");
-			console.log(element); 			
-			console.log(scope.$id);
+ 		scope : {
+
+ 			}		
  		}
 	}
-}]);/**/
+}]);
 
 
-
+//console.log();
 
 
 module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', function(panneaux){
@@ -71,39 +70,26 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', function(pan
 	return {
 		restrict : 'AE',
 		transclude : true,
-		template : '<div class = "panneau" direction="direction"><div ng-transclude></div><div>Direction : {{direction}}</div></div>', 
+		template : '<div class = "panneau" mode="modeDefilement"><div ng-transclude></div><div>Direction : {{direction}}</div></div>', 
 		replace : true, 
 		scope : {
-			direction : " = "
+			mode : " = "
 		},
-		controller : ['$scope', function($scope){
-
-		}],
-		link : function(scope, element, attributes, controleurDefileur){
-		
-
-
-			/*console.log("panneau");
-			console.log(element); 			
-			console.log(scope.$id);*/
-			scope.$watch('direction', function(newValue, oldValue, scope){
-				if (newValue !== oldValue){
-					if (scope.direction == "gauche")
-						panneaux.permuteGauche(element);
-					else if (scope.direction == "droite")
-						panneaux.permuteDroite(element);	
-					console.log("CHANGEMEEEEEENT !!! :) ---> "  + scope.direction);	
-				}
-
-			});
-
-
+		link : function(scope, element, attributes){
 
 			element.on("transitionend", function(event, data){
 				if(element.attr("emplacement") == "centre")
-					scope.$apply(scope.direction = "");
+					scope.$apply(scope.mode = "defilementTermine");
 				event.stopPropagation();
-			});					
+			});
+
+			scope.$watch("mode", function(newValue, oldValue, scope){
+				if (scope.mode == "gauche")
+					panneaux.permuteGauche(element);
+				else if (scope.mode == "droite")
+					panneaux.permuteDroite(element);	
+			});
+
 
 		}
 
@@ -117,14 +103,10 @@ module_defileur.directive('directionDroite', function(){
 
 	return {
 		restrict : 'AE',
-		template : "<div direction='direction'></div>",
-		link : function(scope, element, attributes, controller) {
+		link : function(scope, element, attributes) {
 			element.on("click", function(event){
-				/*scope.direction = "droite";					
-				console.log("avant : " + scope.direction + ", scope id de la fleche droite : " + scope.$id);*/
-				//	console.log("direction : " + scope.direction);	
 				if (!scope.direction)
-					scope.$apply(scope.direction = "droite");	
+					scope.$apply(scope.direction = "gauche");
 			});	
 		}	
 	}
@@ -136,26 +118,15 @@ module_defileur.directive('directionGauche', function(){
 
 	return {
 		restrict : 'AE',
-		template : "<div direction = 'direction'></div>",
 		link : function(scope, element, attributes) {
 			element.on("click", function(event){
-				/*scope.direction = "gauche";					
-				console.log("avant : " + scope.direction + ", scope id de la fleche gauche : " + scope.$id);*/
-				//	console.log("direction : " + scope.direction);
 				if (!scope.direction)
-					scope.$apply(scope.direction = "gauche");	
-
+					scope.$apply(scope.direction = "droite");
 			});	
 		}	
 	}
 
 });
-
-
-
-
-
-
 
 
 /******************************************************************************/
@@ -167,13 +138,8 @@ module_defileur.directive('directionGauche', function(){
 /******************************************************************************/
 /******************************************************************************/
 
-
-
 module_defileur.factory('gestionDesPanneaux',['$q', function($q){
 	var gestion_des_panneaux = {};
-
-	var animation_en_cours = false;	
-
 
 	gestion_des_panneaux.permuteDroite = function(element){
 		var emplacement = element.attr('emplacement');		
@@ -203,52 +169,7 @@ module_defileur.factory('gestionDesPanneaux',['$q', function($q){
 			element.attr("emplacement", "centre");
 	}		
 
-	gestion_des_panneaux.finDefilement = function(scope, element){
-		if(element.attr("emplacement") == "centre")
-			scope.$emit("transitionPanneauTerminee");
-	}
-
-
 	return gestion_des_panneaux;
 }]);
 
-
-
-
-
-
-var module_fonctions_courantes = angular.module('fonctionsCourantes', []);
-
-module_fonctions_courantes.factory('fonctionsCourantes', function(){
-
-
-	var fonctions_courantes = {};
-	var transitionEnd = whichTransitionEvent();
-	//console.log(transitionEnd);
-
-
-
-	function whichTransitionEvent(){
-	    var t;
-	    var el = document.createElement('fakeelement');
-	    var transitions = {
-	      'transition':'transitionend',
-	      'OTransition':'oTransitionEnd',
-	      'MozTransition':'transitionend',
-	      'WebkitTransition':'webkitTransitionEnd'
-	    }
-	
-	    for(t in transitions){
-	        if( el.style[t] !== undefined ){
-	            return transitions[t];
-	        }
-	    }
-	}
-
-	fonctions_courantes.getVendorTransitionEnd = function(){
-		return transitionEnd;
-	}
-	
-	return fonctions_courantes;
-});
 

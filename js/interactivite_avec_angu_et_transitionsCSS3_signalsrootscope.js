@@ -210,22 +210,6 @@ module_defileur.directive('panneauDefileur', ['gestionDesPanneaux', 'servicesEve
 /******************************************************************************/
 
 
-module_defileur.factory('servicesEvenements', ['$q', function($q){
-	var les_services_evenements = {};
-
-	les_services_evenements.mouvement = "";
-
-
-	return les_services_evenements;
-}]);
-
-
-
-
-
-
-
-
 module_defileur.factory('gestionDesPanneaux',['$q', function($q){
 	var gestion_des_panneaux = {};
 
